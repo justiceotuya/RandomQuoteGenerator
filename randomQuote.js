@@ -7,18 +7,20 @@ $("document").ready(function () {
 
     //function to get data from api
     function getData() {
-        $.ajax({
-            headers: {
-                "X-Mashape-Key": "qE3MI8W9blmshBknrl29bjS7Bh9Bp1KZZ70jsnnW7EgiCqP2EN"
-                , Accept: "application/json"
-            }
-            , url: 'https://andruxnet-random-famous-quotes.p.mashape.com/'
-            , type: "GET"
-            , dataType: "json", //data: {}
-            success: function (data) {
-                console.log(data);
-                var currentQuote = data.quote;
-                var currentAuthor = data.author;
+        
+    $.ajax({
+      url: 'http://api.forismatic.com/api/1.0/',
+      jsonp: 'jsonp',
+      dataType: 'jsonp',
+      data: {
+        method: 'getQuote',
+        lang: 'en',
+        format: 'jsonp'
+      },
+        success: function (data) {
+       
+                var currentQuote = data.quoteText;
+                var currentAuthor = data.quoteAuthor;
                 $("#quotes").html(currentQuote);
                 $("#author").html(currentAuthor);
                 
